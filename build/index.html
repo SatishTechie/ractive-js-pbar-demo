@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Progress Bar Demo</title>
+    <link rel="stylesheet" href="css/pb.min.css">
+</head>
+
+<body onload="init()">
+    <div id='container'>
+        Loading...Please wait..
+    </div>
+
+    <script id='pbtemplate' type='text/ractive'>
+        <div style="width: 100%;height: 100%">
+            <div class="header"></div>
+            <div class="content">
+                <div class="pbarMain" id="pbarM">
+                    <div class="pbheader" id="pbheader">Progress Bar Demo</div>
+                    <div class="barContainer" id="barc">
+                        {{#each bars()}}
+                        <div class="ot" id="{{this.id}}" currentStatus="{{this.currentStatus}}">
+                            <label class="pblbl">{{this.value}}%</label>
+                            <div class="in"></div>
+                        </div>
+                        {{/each}}
+                    </div>
+                    <div class="controlsCont">
+                        <div class="selectNode" id="selectpbNode">
+                            <select id="pbSelect">
+                                {{#each options()}}
+                                <option value="{{this.id}}">
+                                    {{this.id}}
+                                </option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="btnContainer" id="btnc">
+                            {{#each buttons()}}
+                            <input id="{{this}}_id" on-click="action:{{this}}" type="button" value="{{this}}"> {{/each}}
+                        </div>
+                    </div>
+                    <div class="err" id="pbarErrNode"></div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <script type="text/javascript" src="main.min.js"></script>
+</body>
+
+</html>
